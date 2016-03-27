@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <title>Occupational</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<div class="row-fluid">
+
+<nav class="navbar navbar-default  " role="navigation">
+  <!-- navbar-fixed-top El logotipo y el icono que despliega el menú se agrupan
+       para mostrarlos mejor en los dispositivos móviles -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse"
+            data-target=".navbar-ex1-collapse">
+      <span class="sr-only">Desplegar navegación</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-align-justify"></span></a>
+  </div>
+
+  <!-- Agrupar los enlaces de navegación, los formularios y cualquier
+  <span class="glyphicon glyphicon-align-justify"></span>
+       otro elemento que se pueda ocultar al minimizar la barra -->
+  <div class="collapse navbar-collapse navbar-ex1-collapse">
+    <ul class="nav navbar-nav">
+      <li><%= link_to 'Ingresar', patients_path(page: 1)%></li>
+      <li><a href="#">ingresar</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          Ingresar<b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+          <li></li>
+          <li><a href="#">Trabajador</a></li>
+          <li><a href="#">Chat</a></li>
+          <li class="divider"></li>
+          <li><a href="#"></a></li>
+          <li class="divider"></li>
+          <li><a href="#">Acción #5</a></li>
+        </ul>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <%= link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown' do %>
+            Ayuda <span class="caret"></span>
+          <% end %>
+          <ul class="dropdown-menu" role="menu">
+            <li></li>
+            <li></li>
+          </ul>
+        </li>
+
+        <li class="dropdown">
+        <% if is_loged? %>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= current_employee.name %> <span class="glyphicon glyphicon-lock"></span></a>
+        <% else %>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Iniciar Sesión <span class="glyphicon glyphicon-lock"></span></a>
+        <% end %>
+
+          <ul class="dropdown-menu" role="menu">
+            <% if is_loged? %>
+              <li><%= link_to 'Cerrar sesión', logout_path %></li>
+            <% else %>
+              <li><%= link_to 'Ingresar al Sistema', security_path %></li>
+            <% end %>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><%= link_to 'Mi información', '#' %></li>
+          </ul>
+        </li>
+
+      </ul>
+  </div>
+</nav>
+  <div class="container">
+    <div class="row row-offcanvas row-offcanvas-right">
+      <%= yield %>
+    </div>
+  </div>
+</body>
+</html>

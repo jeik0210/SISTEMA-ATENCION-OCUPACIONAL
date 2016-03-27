@@ -1,0 +1,8 @@
+if ('<%= @patient.errors.any? %>' == 'true') {
+	var messages = '<%= @patient.errors.full_messages %>';
+	alert(messages.split('&quot;').join('"'));
+}
+else{
+	alert('Paciente ingresado con éxito, DNI: <%= @patient.dni %>');
+	$('#table').html("<%= j (render 'table' )%>");
+}

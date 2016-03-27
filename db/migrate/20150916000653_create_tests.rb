@@ -1,0 +1,101 @@
+class CreateTests < ActiveRecord::Migration
+  def change
+    create_table :tests do |t|
+      t.date :date
+      t.string :department
+      t.string :province
+      t.string :distrite
+      t.string :job
+      t.string :area
+      t.integer :job_time
+      t.float :risk_factor_initial
+      t.float :risk_factor_final
+      t.boolean :epp
+      t.string :ciu88
+      t.string :matrix_code
+      t.references :type_test, index: true
+      t.string :allergies
+      t.boolean :asthma
+      t.boolean :bronchitis
+      t.boolean :diabetes
+      t.boolean :hta
+      t.boolean :neoplasia
+      t.boolean :tbc
+      t.boolean :its
+      t.boolean :seizures
+      t.boolean :hepatitis
+      t.boolean :typhoid
+      t.string :burns
+      t.string :surgery
+      t.string :intoxication
+      t.string :other_personal_pathological
+      t.string :alcohol_type
+      t.string :smoke_type
+      t.string :drugs_type
+      t.string :medicines_type
+      t.string :alcohol_quantity
+      t.string :smoke_quantity
+      t.string :drugs_quantity
+      t.string :medicines_quantity
+      t.string :alcohol_frequency
+      t.string :smoke_frequency
+      t.string :drugs_frequency
+      t.string :medicines_frequency
+      t.string :for_father
+      t.string :for_mother
+      t.string :for_brothers
+      t.string :for_husband
+      t.integer :live_childrens
+      t.integer :dead_childrens
+      t.string :absenteeism
+      t.string :anamnesis_history
+      t.string :height
+      t.string :weight
+      t.string :imc
+      t.string :abdominal_perimeter
+      t.string :f_respiratory
+      t.string :f_cardiovascular
+      t.string :pa
+      t.string :pa_med
+      t.string :other_medical_evaluation
+      t.string :ectoscopia
+      t.string :mental_status
+      t.string :skin
+      t.string :hair
+      t.string :visual_acuity_right
+      t.string :visual_acuity_left
+      t.string :with_corrective_right
+      t.string :with_corrective_left
+      t.string :fundus_oculus
+      t.string :color_vision
+      t.string :depth_view
+      t.string :ears
+      t.string :nose
+      t.string :mouth
+      t.string :pharynx
+      t.string :neck
+      t.string :apparatus_respiratory
+      t.string :apparatus_cardiovascular
+      t.string :apparatus_digestive
+      t.string :apparatus_genitourinary
+      t.string :apparatus_locomotor
+      t.string :motion
+      t.string :column
+      t.string :upper_limbs
+      t.string :lower_limbs
+      t.string :lymphatic_system
+      t.string :nervous_system
+      t.string :completion_psychological
+      t.string :completion_radiographic
+      t.string :completion_pathologic
+      t.string :pathological_finding
+      t.string :completion_audiometry
+      t.string :completion_spirometry
+      t.string :other_general
+      t.string :recomendations
+      t.references :result_type, index: true
+
+      t.timestamps
+    end
+  end
+end

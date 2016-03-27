@@ -1,0 +1,11 @@
+if ('<%= @patient.errors.any? %>' == 'true') {
+	var messages = '<%= @patient.errors.full_messages %>';
+	alert(messages.split('&quot;').join('"'));	
+}
+else{
+	$("#modal_update_patient<%= @patient.id.to_s %>").modal('hide');
+	setTimeout(function(){
+		alert('Paciente ingresado con éxito, DNI: <%= @patient.dni %>');
+		$('#table').html("<%= j (render 'table' )%>");
+	}, 500);
+}

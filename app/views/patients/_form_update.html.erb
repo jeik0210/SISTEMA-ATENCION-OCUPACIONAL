@@ -1,0 +1,57 @@
+<%= form_tag(update_patient_path, method: 'post', role: 'form', remote: true) do %>
+<%= hidden_field_tag :patient_id, patient.id %>
+<%= label_tag :paternal, 'Apellidos'%>
+<div class="row">
+	<div class="col-md-6">
+		<%= text_field :patient, :paternal, value: patient.paternal ,placeholder: 'Paterno',  class: 'form-control' %>
+	</div>
+	<div class="col-md-6">
+		<%= text_field :patient, :maternal, value: patient.maternal ,placeholder: 'Materno',  class: 'form-control' %>
+	</div>
+</div>
+<%= label :patient, :name, 'Nombres'%>
+<%= text_field :patient, :name , value: patient.name, class: 'form-control' %>
+<%= label_tag :dni, 'DNI' %>
+<%= text_field :patient, :dni, value: patient.dni , class: 'form-control' %>
+<%= label_tag :dni, 'Correo electrónico:' %>
+<%= text_field :patient, :email, value: patient.email , class: 'form-control' %>
+<%= label_tag :date_of_birth, 'Fecha de Nacimiento'%>
+<%= date_field :patient, :date_of_birth, value: patient.date_of_birth, class: 'form-control'%>
+<%= label_tag :sex , 'Genero' %>
+<br>
+<% if patient.sex %>
+<%= label :patient, :sex, "Masculino", :value => "true"  %>
+<%= radio_button :patient, :sex, true, checked: true %>
+<br>
+<%= label :patient, :sex, "Femenino", :value => "false" %>
+<%= radio_button :patient, :sex, false %>
+<br>
+<% else %>
+<%= label :patient, :sex, "Masculino", :value => "true"  %>
+<%= radio_button :patient, :sex, true %>
+<br>
+<%= label :patient, :sex, "Femenino", :value => "false" %>
+<%= radio_button :patient, :sex, false, checked: true %>
+<br>
+<% end %>
+<%= label_tag :medical_record , 'Historia Clinica'%>
+<%= text_field :patient, :medical_record, value: patient.medical_record, class: 'form-control'%>
+<%= label_tag :home, 'Departamento :'%>
+<%= text_field :patient, :department, value: patient.department, class: 'form-control' %>
+<%= label_tag :home, 'Provincia :'%>
+<%= text_field :patient, :province, value: patient.province, class: 'form-control' %>
+<%= label_tag :home, 'Distrito :'%>
+<%= text_field :patient, :distrite, value: patient.distrite, class: 'form-control' %>
+<%= label_tag :home, 'Urbanización :'%>
+<%= text_field :patient, :urbanization, value: patient.urbanization, class: 'form-control' %>
+<%= label_tag :place_of_birth , 'Lugar de Nacimiento'%>
+<%= text_field :patient, :place_of_birth, value: patient.place_of_birth, class: 'form-control'%>
+<%= label_tag :phone ,'Telefono' %>
+<%= text_field :patient, :phone , value: patient.phone, class: 'form-control' %>
+<div class="text-center top-buffer">
+	<%= button_tag type: 'submit', class: "btn btn-success text-center" do %>
+	Guardar <span class="glyphicon glyphicon-floppy-disk"></span>
+	<% end %>
+</div>
+
+<% end %>

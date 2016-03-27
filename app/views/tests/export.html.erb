@@ -1,0 +1,742 @@
+<table border="1" width="100%" align="center">
+	<h5 align="center">DOCUMENTO TECNICO:
+		PROTOCOLOS DE EXAMENES OCUPACIONALES Y GUIAS DE DIAGNOSTICO DE LOS EXAMENES MEDICOS
+	</h5>
+	<h3 align="center">
+		<b>Certificado de Aptitud Médico Ocupacional</b>
+	</h3>
+  <tr>
+    <td><%= image_tag('logo.png') %></td>
+    <td colspan="5"><center>codigo  </center></td>
+  </tr>
+  <tr>
+    <td colspan="6" align="center" style="background-color:#ADBCC0;"><b>CERTIFICA que el Sr.(a)</b></td>
+  </tr>
+  <tr>
+  	<td><b>EMPRESA ESPECIALIZADA</b></td>
+  	<td colspan="5"><%= @test.specialized_company %></td>
+  </tr>
+  <tr>
+  	<td><b>Empresa</b></td>
+  	<td colspan="5"><%= @test.business.name %></td>
+  </tr>
+  <tr>
+    <td><b>Nombres y Apellidos</b></td>
+    <td colspan="5"><%= @test.patient.full_name %></td>
+  </tr>
+  <tr>
+    <td><b>Documento de Identidad</b></td>
+    <td><%= @test.patient.dni %></td>
+    <td><b>Edad</b></td>
+    <td><%= @test.patient.age %> años</td>
+    <td><b> Genero </b></td>
+    <td>
+      <% if @test.patient.sex %>
+      <%= label :patient, :sex, "M", :value => "true"  %>
+      <%= radio_button :patient, :sex, true, checked: true %>
+
+      <%= label :patient, :sex, "F", :value => "false" %>
+      <%= radio_button :patient, :sex, false %>
+
+      <% else %>
+      <%= label :patient, :sex, "M", :value => "true"  %>
+      <%= radio_button :patient, :sex, true %>
+
+      <%= label :patient, :sex, "F", :value => "false" %>
+      <%= radio_button :patient, :sex, false, checked: true %>
+
+      <% end %> 
+    </td>
+
+  </tr>
+  <tr>
+  	<td><b>Domicilio</b></td>
+    <td colspan="5"><%= @test.patient.home %></td>
+  </tr>
+  <tr>
+   <td><b>Lugar y Fecha de Nacimiento</b></td>
+   <td colspan="5"><%= @test.patient.place_of_birth%> | <%= @test.patient.date_of_birth%></td>
+ </tr>
+ <tr>
+   <td><b>Teléfono fijo y/o celular</b></td>
+   <td colspan="5"><%= @test.patient.phone%></td>
+ </tr>
+ <tr>
+  <td><b>Puesto al que postula(Solo pre Ocupacion)</b></td>
+  <td colspan="5"><%= @test.office %></td>
+</tr>
+<tr>
+  <td><b>Ocupacion actual o ultima Ocupacion</b></td>
+  <td colspan="5"></td>
+</tr>
+<tr>
+  <td><b>HISTORIA CLINICA</b></td>
+  <td colspan="5"><%= @test.patient.medical_record %></td>
+</tr>
+<tr>
+  <td><b>Conclusiones</b></td>
+  <td colspan="5"><%= @test.blood_group%></td>
+</tr>
+<tr>
+  <td><%= @test.suitable %></td>
+  <td colspan="5" height="30"><b> Restricciones : </b><%= @test.restriction %></td>
+</tr>
+<tr>
+  <td><b>Recomendaciones</b></td>
+  <td colspan="5" height="50"><%= @test.recommendation%></td>
+</tr>
+<tr>
+ <td><b>Fecha : </b><%= @test.created_at.strftime("%m/%d/%Y") %></td>
+ <td colspan="5" height="100">
+  <br>
+  <br>
+  <br>
+  <br>
+  <center>_____________________________________</center>
+  <center><b>Sello y Firma del Médico que CERTIFICA</b></center>
+</td>
+
+</tr>
+<tr>
+ <td><b>TIPO DE EXAMEN</b></td>
+ <td colspan="5"><%= @test.type_tests%></td>
+</tr>
+<tr>
+ <td><b>GRADO DE INSTRUCCION </b></td>
+ <td colspan="5"><%= @test.level_of_education%></td>
+</tr>
+<tr>
+ <td><b>ALTURA DE LA LABOR</b></td>
+ <td colspan="5"><%= @test.height_work%></td>
+</tr>
+<tr>
+ <td><b>NUMERO DE HIJOS</b></td>
+ <td><b>VIVOS :</b></td>
+ <td><%= @test.living_children %></td>
+ <td><b>MUERTOS :</b></td>
+ <td colspan="2"><%= @test.dead_children%></td>
+</tr>
+<tr>
+ <td><b>ESTADO CIVIL</b></td>
+ <td colspan="5"><%= @test.marital_status%></td>
+</tr>
+<tr height="50">
+  <td>
+  	<b>AREA DE TRABAJO</b><br>
+  	<%= check_box_tag :chec , @test.subsoil, @test.subsoil %> Superficie
+  	<br>
+    <%=  check_box_tag :chec , @test.surface, @test.surface %> Subsuelo
+    <br>
+    <%= check_box_tag :chec , @test.concentrator, @test.concentrator %> Concentradora
+  </td>
+  <td colspan="5">
+    <b>EXPOSICION</b><br>
+    <%= check_box_tag :che , @test.noise, @test.noise %> Ruido 
+    <br>
+    <%= check_box_tag :che , @test.powder, @test.powder %> Polvo
+    <br>
+    <%= check_box_tag :che , @test.gases, @test.gases %> Gases
+    <br>
+    <%= check_box_tag :che , @test.chemical, @test.chemical %> Quimicas
+    <br>
+    <%= check_box_tag :che , @test.biological, @test.biological %> Biologicas
+    <br>
+    <%= check_box_tag :che , @test.ergonomic, @test.ergonomic %> Ergonómico 
+    <br>
+    <%= check_box_tag :che , @test.other_checkbox, @test.other_checkbox %> Otros,
+    <%= @test.other_exposure%>
+  </td>
+</tr>
+<tr>
+  <td><b>REACCIONES A MEDICAMENTOS</b></td>
+  <td><%= @test.adverse_reaction %></td>
+  <td colspan="5"><b>Observación : <%= @test.adverse_reaction_observation %></b></td>
+</tr>
+<tr>
+  <td><b>ANTECEDENTES PERSONALES</b></td>
+  <td colspan="5"><%= @test.personal_history%></td>
+</tr>
+<tr>
+  <td><b> ENFERMEDADES OCUPACIONALES</b></td>
+  <td colspan="5"><%= @test.occupational_disease%></td>
+</tr>
+<tr>
+  <td><b>ANTECEDENTES FAMILIARES</b></td>
+  <td><b>Hábito Tabaco : </b><%= @test.snuff_habit%></td>
+  <td><b>Hábito Alcohol : </b><%= @test.alcohol_habit%></td>
+  <td colspan="3"><b>Hábito Coca : </b><%= @test.cocaine_habit%></td>
+</tr>
+<tr>
+  <td><b>Talla</b></td>
+  <td><%= @test.size%></td>
+  <td><b>Peso</b></td>
+  <td><%= @test.weight%></td>
+  <td><b>IMC</b></td>
+  <td><%= @test.imc%></td>
+
+</tr>
+<tr>
+  <td><b>PERIM.ABDOM:</b></td>
+  <td><%= @test.waist_circunference%></td>
+  <td><b>ENVERGADURA</b></td>
+  <td><%= @test.wingspan%></td>
+  <td><b>P/A</b></td>
+  <td><%= @test.waist_circumference%></td>
+</tr>
+<tr>
+  <td><b>FC</b></td>
+  <td><%= @test.heart_rate%></td>
+  <td><b>FR</b></td>
+  <td><%= @test.respiratory_rate%></td>
+  <td><b>T°</b></td>
+  <td><%= @test.temperature%></td>
+</tr>
+<tr>
+  <td><b>FUERZA MUSCULAR</b></td>
+  <td colspan="5"><%= @test.muscle %></td>
+</tr>
+<tr>
+  <td><b>PERIMETRO TORAXICO</b></td>
+  <td><b>Maxima inspiracion</b></td>
+  <td><%= @test.maximal_inspiration%></td>
+  <td><b>Expiracion Forzada</b></td>
+  <td colspan="2"><%= @test.forced_expiratory%></td>
+</tr>
+<tr>
+  <td><b>PIEL</b></td>
+  <td><%= @test.skin%></td>
+  <td><b>FANERAS</b></td>
+  <td colspan="3"><%= @test.farreras%></td>
+</tr>
+<tr>
+  <td><b>NARIZ</b></td>
+  <td><%= @test.nose%></td>
+  <td><b>BOCA</b></td>
+  <td><%= @test.mouth%></td>
+  <td><b>CUELLO</b></td>
+  <td><%= @test.neck%></td>
+</tr>
+<tr>
+  <td><b>FARINGE</b></td>
+  <td><%= @test.pharynx%></td>
+  <td><b>DENTADURA</b></td>
+  <td colspan="3"><%= @test.teeth%></td>
+</tr>
+<tr>
+  <td></td>
+  <td colspan="2"><center><b>Sin corregir</b></center></td>
+  <td colspan="3"><center><b>Corregida</b></center></td>
+</tr>
+<tr>
+
+  <td><center><b>VISION</b></center></td>
+  <td><center>OD</center></td>
+  <td><center>OI</center></td>
+  <td><center>OD</center></td>
+  <td colspan="2"><center>OI</center></td>
+</tr>
+<tr>
+  <td colspan="1"><b>CERCA</b></td>
+  <td><center><%=  @test.near_vision_sin_OD %></center></td>
+  <td><center><%= @test.near_vision_sin_OI%></center></td>
+  <td><center><%=@test.near_vision_co_OD %></center></td>
+  <td colspan="2"><center><%=@test.near_vision_co_OI %></center></td>
+</tr>
+<tr>
+  <td colspan="1"><b>LEJOS</b></td>
+  <td><center><%= @test.viewing_distance_sin_OD%></center></td>
+  <td><center><%= @test.viewing_distance_sin_OI %></center></td>
+  <td><center><%=@test.viewing_distance_co_OD %></center></td>
+  <td colspan="2"><center><%=@test.viewing_distance_co_OI %></center></td>
+</tr>
+<tr>
+
+  <td><center><b>OIDOS</b></center></td>
+  
+  <td><center>OD</center></td>
+  <td><center>OI</center></td>
+  <td colspan="3"></td>
+</tr>
+<tr>
+  <td>TIMPANOS</td>
+  
+  <td><%=  @test.timpani_OD %></td>
+  <td><%=  @test.timpani_OI %></td>
+  <td colspan="3"></td>
+</tr>
+<tr>  
+  <td>CAE</td>
+  
+  <td><%=  @test.CAE_OD %></td>
+  <td><%=  @test.CAE_OI %></td>
+  <td colspan="3"></td>
+</tr>
+<tr>
+  <td><b>PULMONES</b></td>
+  <td><%= @test.lungs%></td>
+  <td><b>Enfermedades Oculares</b></td>
+  <td><%= @test.eye_diseases%></td>
+  <td><b>Reflejos Pupilares</b></td>
+  <td><%= @test.pupilary_reflexes%></td>
+</tr>
+<tr>
+  <td></td>
+  <td colspan="2"><center><b>SINTOMAS-SIGNOS</b></center></td>
+  <td colspan="3"><center><b>SINTOMAS-SIGNOS</b></center></td>
+</tr>
+<tr>
+
+  <td><center><b>VISION</b></center></td>
+  <td><center>Disminucion de vision :</center></td>
+  <td><center><%= @test.decreased_vision%></center></td>
+  <td><center>Lagrimeo :</center></td>
+  <td colspan="2"><center><%= @test.lacrimation%></center></td>
+</tr>
+<tr>
+  <td><b>CERCA</b></td>
+  <td><center>Perdida de vision :</center></td>
+  <td><center><%= @test.vision_loss%></center></td>
+  <td><center>Enrojecimiento ocular :</center></td>
+  <td colspan="2"><center><%= @test.eye_redness%></center></td>
+</tr>
+<tr>
+  <td colspan="1"><b>LEJOS</b></td>
+  <td><center>Color Ocular :</center></td>
+  <td><center><%= @test.eye_color %></center></td>
+  <td><center>Prurito ocular :</center></td>
+  <td colspan="2"><center><%= @test.prurito_ocular%></center></td>
+</tr>
+<tr>
+  <td colspan="1"><b>LEJOS</b></td>
+  <td><center>Secrecion ocular :</center></td>
+  <td><center><%= @test.eye_discharge %></center></td>
+  <td><center>Ardor ocular :</center></td>
+  <td colspan="2"><center><%= @test.ardor%></center></td>
+</tr>
+<tr>
+  <td></td>
+  <td colspan="2"><center><b>ANTECEDENTES GENERALES</b></center></td>
+  <td colspan="3"><center><b>USO DE LENTES</b></center></td>
+</tr>
+<tr>
+
+  <td><center><b>VISION</b></center></td>
+  <td><center>Diabetes :</center></td>
+  <td><center><%= @test.diabetes%></center></td>
+  <td><center>Glaucoma :</center></td>
+  <td colspan="2"><center><%= @test.glaucoma %></center></td>
+</tr>
+<tr>
+  <td><b>CERCA</b></td>
+  <td><center>Hypertension arterial :</center></td>
+  <td><center><%= @test.hypertension%></center></td>
+  <td><center>Operaciones :</center></td>
+  <td colspan="2"><center><%= @test.operation%></center></td>
+</tr>
+<tr>
+  <td colspan="1"><b>LEJOS</b></td>
+  <td><center>Artritis Reumatoide :</center></td>
+  <td><center><%= @test.rheumatoid_arthritis %></center></td>
+  <td><center>Detalles :</center></td>
+  <td colspan="2"><center><%= @test.detail%></center></td>
+</tr>
+<tr>
+  <td colspan="1"><b>LEJOS</b></td>
+  <td><center>Alergias :</center></td>
+  <td><center><%= @test.allergy %></center></td>
+  <td><center>Otros :</center></td>
+  <td colspan="2"><center><%= @test.other_lentes%></center></td>
+</tr>
+<tr>
+  <td colspan="1"><b>LEJOS</b></td>
+  <td><center>Otros :</center></td>
+  <td><center><%= @test.other_general %></center></td>
+  <td></td>
+  <td colspan="2"></td>
+</tr>
+<tr>
+  <th><center>EXAMEN</center></th>
+  <th><center>OD</center></th>
+  <th><center>Normal</center></th>
+  <th><center>OI</center></th>
+  <td  rowspan="8" colspan="2"></td>
+</tr>
+<tr>
+  <td>Agudeza Visual S.cc</td>
+  <td><center><%=  @test.visual_acuity_OD %></center></td>
+  <td><center><%=  @test.visual_acuity_Normal %></center></td>
+  <td><center><%=  @test.visual_acuity_OI %></center></td>
+</tr>
+<tr>
+  <td>Vision de Cerca S.cc</td>
+  <td><center><%=  @test.near_vision_OD %></center></td>
+  <td><center><%=  @test.near_vision_Normal %></center></td>
+  <td><center><%=  @test.near_vision_OI %></center></td>
+</tr>
+<tr>
+  <td>Presion Ocular</td>
+  <td><center><%=  @test.ocular_pressure_OD %></center></td>
+  <td><center><%=  @test.ocular_pressure_Normal %></center></td>
+  <td><center><%=  @test.ocular_pressure_OI %></center></td>
+</tr>
+<tr>
+  <th><center>ESPECIALES</center></th>
+  <th><center>OD</center></th>
+  <th><center>Normal</center></th>
+  <th><center>OI</center></th>
+</tr>
+<tr>
+  <td>Test colores</td>
+  <td><center><%=  @test.test_color_OD %></center></td>
+  <td><center><%=  @test.test_color_Normal%></center></td>
+  <td><center><%=  @test.test_color_OI%></center></td>
+</tr>
+<tr>
+  <td>Campo Visual</td>
+  <td><center><%=  @test.visual_field_OD %></center></td>
+  <td><center><%=  @test.visual_field_Normal %></center></td>
+  <td><center><%=  @test.visual_field_OI %></center></td>
+</tr>
+<tr>
+  <td>T.Profundidad</td>
+  <td><center><%=  @test.t_depth_OD %></center></td>
+  <td><center><%=  @test.t_depth_Normal %></center></td>
+  <td><center><%=  @test.t_depth_OI %></center></td>
+</tr>
+<tr>
+  <th><center >HALLAZGOS</center></th>
+  <th colspan="2"><center>O.D.</center></th>
+  <th colspan="3"><center>O.I.</center></th>
+</tr>
+<tr>
+  <td><b><center>PARPADOS Y ANEXOS</center></b></td>
+  <td colspan="2"></td>
+  <td colspan="3"></td>
+</tr>
+<tr>
+  <td><center>Blefaritis</center></td>
+  <td colspan="2"><center><%= @test.blepharitis_OD%></center></td>
+  <td colspan="3"><center><%= @test.blepharitis_OI%></center></td>
+</tr>
+<tr>
+  <td><center>Tumoraciones</center></td>
+  <td colspan="2"><center><%= @test.tumors_OD%></center></td>
+  <td colspan="3"><center><%= @test.tumors_OI%></center></td>
+</tr>
+<tr>
+  <td><center>Ptosis</center></td>
+  <td colspan="2"><center><%= @test.ptosis_OD%></center></td>
+  <td colspan="3"><center><%= @test.ptosis_OI%></center></td>
+</tr>
+<tr>
+  <th><center>IRIS-PUPILA</center></th>
+  <th colspan="2"><center>O.D.</center></th>
+  <th colspan="3"><center>O.I.</center></th>
+</tr>
+
+<tr>
+  <td><center>Reflej-patologico</center></td>
+  <td colspan="2"><center><%= @test.pathological_reflex_OD%></center></td>
+  <td colspan="3"><center><%= @test.pathological_reflex_OI%></center></td>
+</tr>
+<tr>
+  <td><center>Adherencia</center></td>
+  <td colspan="2"><center><%= @test.adherence_OD%></center></td>
+  <td colspan="3"><center><%= @test.adherence_OI%></center></td>
+</tr>
+<tr>
+  <td><b>Aparato Respiratorio</b></td>
+  <td><%= @test.apparatus_respiratory%></td>
+  <td><b>Aparato Cardiovascular</b></td>
+  <td><%= @test.cardiovascular_system%></td>
+  <td><b>Abdomen</b></td>
+  <td><%= @test.abdomentest6 %></td>
+
+</tr>
+<tr>
+  <td><b>Anillos Abdominales</b></td>
+  <td><%= @test.abdominal_ring %></td>
+  <td><b>Aparato Genitourinario</b></td>
+  <td><%= @test.genitourinary %></td>
+  <td><b>Organos Genitales</b></td>
+  <td><%= @test.sexual_organs%></td>
+</tr>
+<tr>
+  <td><b>Aparato Locomotor</b></td>
+  <td><%= @test.musculoskeletal%></td>
+  <td><b>Mienbros Superiores e Inferiores</b></td>
+  <td><%= @test.upper_and_lower_limb %></td>
+  <td><b>Columna Vertical</b></td>
+  <td><%= @test.vertical_column %></td>
+</tr>
+<tr> 
+  <td><b>Hernias</b></td>
+  <td><%= @test.hernia %></td>
+  <td><b>Varices</b></td>
+  <td><%= @test.varice%></td>
+  <td><b>LENGUAJE, ATENCION, MEMORIA, ORIENTACION, AFECTIVIDAD</b></td>
+  <td><%= @test.memory%></td>
+</tr>
+<tr>
+  <td><b>Tacto Rectal</b></td>
+  <td colspan="5"><%= @test.straight%></td>
+</tr>
+<tr>
+  <th><center>CONJUNTIVA / ESCLEROTICA</center></th>
+  <th colspan="2"><center>O.D.</center></th>
+  <th colspan="3"><center>O.I.</center></th>
+</tr>
+
+<tr>
+  <td><center>Inflamaciones</center></td>
+  <td colspan="2"><center><%= @test.inflammation_OD %></center></td>
+  <td colspan="3"><center><%= @test.inflammation_OI %></center></td>
+</tr>
+<tr>
+  <td><center>Carnosidades</center></td>
+  <td colspan="2"><center><%= @test.fleshiness_OD%></center></td>
+  <td colspan="3"><center><%= @test.fleshiness_OI%></center></td>
+</tr>
+<tr>
+  <th><center>CORNEA</center></th>
+  <th colspan="2"><center>O.D.</center></th>
+  <th colspan="3"><center>O.I.</center></th>
+</tr>
+
+<tr>
+  <td><center>Opacidades</center></td>
+  <td colspan="2"><center><%= @test.opacity_OD %></center></td>
+  <td colspan="3"><center><%= @test.opacity_OI%></center></td>
+</tr>
+<tr>
+  <td><center>Ulceras</center></td>
+  <td colspan="2"><center><%= @test.ulcer_OD %></center></td>
+  <td colspan="3"><center><%= @test.ulcer_OI %></center></td>
+</tr>
+<tr>
+  <th><center>CAMARA ANTERIOR</center></th>
+  <th colspan="2"><center>O.D.</center></th>
+  <th colspan="3"><center>O.I.</center></th>
+</tr>
+
+
+<tr>
+  <td><center>Cedulas o sangre</center></td>
+  <td colspan="2"><center><%= @test.blood_OD%></center></td>
+  <td colspan="3"><center><%= @test.blood_OI%></center></td>
+</tr>
+<tr>
+  <td><center>Plus</center></td>
+  <td colspan="2"><center><%= @test.bonus_OD%></center></td>
+  <td colspan="3"><center><%= @test.bonus_OI%></center></td>
+</tr>
+<tr>
+  <th><center>CRISTALINO</center></th>
+  <th colspan="2"><center>O.D.</center></th>
+  <th colspan="3"><center>O.I.</center></th>
+</tr>
+
+<tr>
+  <td><center>Catarata</center></td>
+  <td colspan="2"><center><%= @test.cataract_OD%></center></td>
+  <td colspan="3"><center><%= @test.cataract_OI%></center></td>
+</tr>
+<tr>
+  <th><center>OTROS</center></th>
+  <th colspan="2"><center>O.D.</center></th>
+  <th colspan="3"><center>O.I.</center></th>
+</tr>
+
+<tr>
+  <td><center>Estrabismo</center></td>
+  <td colspan="2"><center><%= @test.squint_OD%></center></td>
+  <td colspan="3"><center><%= @test.squint_OI%></center></td>
+</tr>
+<tr>
+  <th><center>VITREO/RETINA desprendimiento</center></th>
+  <th colspan="2"><center>O.D.</center></th>
+  <th colspan="3"><center>O.I.</center></th>
+</tr>
+
+<tr>
+  <td><center>Hemorragia</center></td>
+  <td colspan="2"><center><%= @test.hemorrhage_OD%></center></td>
+  <td colspan="3"><center><%= @test.hemorrhage_OI%></center></td>
+</tr>
+<tr>
+  <td><center>Exudados</center></td>
+  <td colspan="2"><center><%= @test.exudar_OD%></center></td>
+  <td colspan="3"><center><%= @test.exudar_OI %></center></td>
+</tr>
+<tr>
+  <td><center>Agujeros</center></td>
+  <td colspan="2"><center><%= @test.hole_OD%></center></td>
+  <td colspan="3"><center><%= @test.hole_OI%></center></td>
+</tr>
+<tr>
+  <td><center>Papila Glaucomatosa</center></td>
+  <td colspan="2"><center><%= @test.pupil_glaucoma_OD%></center></td>
+  <td colspan="3"><center><%= @test.pupil_glaucoma_OI%></center></td>
+</tr>
+<tr>
+  <td><b>DIAGNOSTICO</b></td>
+  <td colspan="5"><%= @test.diagnosis %></td>
+</tr>
+<tr>
+  <td><center><b>Aptitud de espalda</b></center></td>
+  <td colspan="3"><b><center>Puntos</center></center></td>
+  <td colspan="2"><center><b>Observaciones</b></center></td>
+</tr>
+<tr>
+  <td>Flexibilidad / Fuerza ABDOMEN</td>
+  <td colspan="3"><center><%= @test.abdomen %></center></td>
+  <td colspan="2"><%= @test.abdomen_observation%></td>
+</tr>
+<tr>
+ <td>CADERA</td>
+ <td colspan="3"><center><%= @test.hip %></center></td>
+ <td colspan="2"><%= @test.hip_observation %></td>
+</tr>
+<tr>
+  <td>MUSLO</td>
+  <td colspan="3"><center><%= @test.thigh %></center></td>
+  <td colspan="2"><%= @test.thigh_observation %></td>
+</tr>
+<tr>
+  <td>ABDOMEN LATERAL</td>
+  <td colspan="3"><center><%= @test.lateral_abdominal %></center></td>
+  <td colspan="2"><%= @test.lateral_abdominal_observation %></td>
+</tr>
+<tr>
+<%
+  @suma1 = @test.abdomen.to_i + @test.hip.to_i + @test.thigh.to_i + @test.lateral_abdominal.to_i 
+%>
+  <td><b>TOTAL</b></td>
+  <td colspan="3"><center><%= @suma1 %></center></td>
+  <td colspan="2"></td>
+</tr>
+<tr>
+  <td><center><b>Rasgos Articulares</b></center></td>
+  <td colspan="3"><b><center>Puntos</center></center></td>
+  <td colspan="2"><center><b>Dolor con resistencia SI/NO</b></center></td>
+</tr>
+<tr>
+  <td>Abduccion de hombro (Normal 0°-180°)</td>
+  <td colspan="3"><center><%= @test.shoulder %></center></td>
+  <td colspan="2"><center><%= @test.shoulder_abduction_pain %></center></td>
+</tr>
+<tr>
+ <td>Aduccion de hombro</td>
+ <td colspan="3"><center><%= @test.shoulder_aduccion %></center></td>
+ <td colspan="2"><center><%= @test.shoulder_aduccion_pain %></center></td>
+</tr>
+<tr>
+  <td>Rotacion externa (Normal 0°-90°)</td>
+  <td colspan="3"><center><%= @test.external_rotation %></center></td>
+  <td colspan="2"><center><%= @test.external_rotation_pain %></center></td>
+</tr>
+<tr>
+  <td>Rotacion interna (Normal 0°-60°)</td>
+  <td colspan="3"><center><%= @test.internal_rotation %></center></td>
+  <td colspan="2"><center><%= @test.internal_rotation_pain %></center></td>
+</tr>
+<%
+  @suma = @test.shoulder.to_i + @test.shoulder_aduccion.to_i + @test.external_rotation.to_i + @test.internal_rotation.to_i
+%>
+<tr>
+  <td><b>TOTAL</b></td>
+  <td colspan="3"><center><%= @suma %></center></td>
+  <td colspan="2"></td>
+</tr>
+<tr>
+  <td><b>OBSERVACION :</b></td>
+  <td colspan="5"><%= @test.general_comment%></td>
+</tr>
+<tr>
+  <td><center><b>ANTECEDENTES PATOLOGICOS</b></center></td>
+  <td colspan="3"><b><center></center></center></td>
+  <td colspan="2"><center><b>OBSERVACION</b></center></td>
+</tr>
+<tr>
+  <td>Convulsiones, Epilepsia</td>
+  <td colspan="3"><center><%= @test.convulsion %></center></td>
+  <td colspan="2"><center><%= @test.convulsion_observation %></center></td>
+</tr>
+<tr>
+ <td>Cefaleas y migraña</td>
+ <td colspan="3"><center><%= @test.headache %></center></td>
+ <td colspan="2"><center><%= @test.headache_observation %></center></td>
+</tr>
+<tr>
+  <td>Mareos</td>
+  <td colspan="3"><center><%= @test.dizzness %></center></td>
+  <td colspan="2"><center><%= @test.dizzness_observation %></center></td>
+</tr>
+<tr>
+  <td>Vertigo</td>
+  <td colspan="3"><center><%= @test.vertigo %></center></td>
+  <td colspan="2"><center><%= @test.vertigo_observation %></center></td>
+</tr>
+<tr>
+  <td>Insomnio</td>
+  <td colspan="3"><center><%= @test.insomnia %></center></td>
+  <td colspan="2"><%= @test.insomnia_observation%></td>
+</tr>
+<tr>
+  <td>Enfermedades Psiquiatricas</td>
+  <td colspan="3"><center><%= @test.e_psychiatric %></center></td>
+  <td colspan="2"><%= @test.e_psychiatric_observation%></td>
+</tr>
+<tr>
+  <td>Enfermedades Cardiovasculares</td>
+  <td colspan="3"><center><%= @test.e_cardiovascular %></center></td>
+  <td colspan="2"><%= @test.e_cardiovascular_observation%></td>
+</tr>
+<tr>
+ <td>Enfermedades Oculares</td>
+ <td colspan="3"><center><%= @test.e_ocular %></center></td>
+ <td colspan="2"><%= @test.e_ocular_observation%></td>
+</tr>
+<tr>
+  <td><b>Otros</b></td>
+  <td colspan="3"><center><%= @test.other_pathological %></center></td>
+  <td colspan="2"><%= @test.other_pathological_observation %></td>
+</tr>
+<tr>
+  <td><center><b>EXAMEN FISICO  </b></center></td>
+  <td colspan="3"><b><center></center></center></td>
+  <td colspan="2"><center><b>OBSERVACION</b></center></td>
+</tr>
+<tr>
+  <td>Equilibrio</td>
+  <td colspan="3"><center><%= @test.balance %></center></td>
+  <td colspan="2"><center><%= @test.balance_observation %></center></td>
+</tr>
+<tr>
+ <td>Coordinacion</td>
+ <td colspan="3"><center><%= @test.coordination %></center></td>
+ <td colspan="2"><center><%= @test.coordination_observation %></center></td>
+</tr>
+<tr>
+  <td>Marcha</td>
+  <td colspan="3"><center><%= @test.march %></center></td>
+  <td colspan="2"><center><%= @test.march_observation %></center></td>
+</tr>
+<tr>
+  <td>Estereopsis</td>
+  <td colspan="3"><center><%= @test.stereopsis %></center></td>
+  <td colspan="2"><center><%= @test.stereopsis_observation %></center></td>
+</tr>
+<tr>
+  <td>Hipertension inducida</td>
+  <td colspan="3"><center><%= @test.hyperventilation %></center></td>
+  <td colspan="2"><%= @test.hyperventilation_observation%></td>
+</tr>
+<tr>
+  <td>EXAMEN FISICO</td>
+  <td colspan="3"><center><%= @test.physical_examination %></center></td>
+  <td colspan="2"><%= @test.physical_examination_observation%></td>
+</tr>
+
+</table>
+

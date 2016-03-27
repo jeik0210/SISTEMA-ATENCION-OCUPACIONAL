@@ -1,0 +1,76 @@
+<div>
+  <div class="row">
+    <div class="col-md-1">
+      <button class="btn btn-warning btn-sm"><%= link_to 'ATRAS', patients_path(page: 1), class: 'btn'%></button>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1"></div>
+    <div class="col-md-1">
+      <button class="btn btn-warning btn-sm"><%= link_to 'EXPORTAR', export_path(test_id: @test.id), class: 'btn'%></button>
+    </div>
+  </div>
+
+  <h1>
+    <%= @test.patient.full_name %>
+  </h1>
+
+</div>
+<div role="tabpanel" id="tab">
+
+  <%= form_tag(update_test_path, method: 'post') do %>
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#test1" aria-controls="test1" role="tab" data-toggle="tab">Certificado Ocupacional</a></li>
+    <li role="presentation"><a href="#test2" aria-controls="test2" role="tab" data-toggle="tab">Certificado Ocupacional</a></li>
+    <li role="presentation"><a href="#test6" aria-controls="test6" role="tab" data-toggle="tab">Certificado Ocupacional</a></li>
+    <li role="presentation"><a href="#test3" aria-controls="test3" role="tab" data-toggle="tab">Certificado Ocupacional</a></li>
+    <li role="presentation"><a href="#test4" aria-controls="test4" role="tab" data-toggle="tab">Certificado Ocupacional</a></li>
+    <li role="presentation"><a href="#test5" aria-controls="test5" role="tab" data-toggle="tab">Certificado Ocupacional</a></li>
+
+  </ul>
+
+  <!-- Tab panes -->
+
+  <%= hidden_field_tag :test_id, @test.id %>
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="test1"><%= render 'test1'%></div>
+    <div role="tabpanel" class="tab-pane fade" id="test2"><%= render 'test2'%></div>
+    <div role="tabpanel" class="tab-pane fade" id="test3"><%= render 'test3' %></div>
+    <div role="tabpanel" class="tab-pane fade" id="test4"><%= render 'test4'%></div>
+    <div role="tabpanel" class="tab-pane fade" id="test5"><%= render 'test5' %></div>
+    <div role="tabpanel" class="tab-pane fade" id="test6"><%= render 'test6'%></div>
+  </div>
+  <div class="text-center row bot-buffer top-buffer">
+    <%= button_tag class: 'btn btn-primary col-md-12' do %>
+    <h2>G U A R D A R</h2>
+    <% end %>
+  </div>
+  <% end %>
+
+  <div class="modal fade" id="modal_create_patient" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel"><center><b>INGRESAR EMPRESA</b></center></h4>
+        </div>
+        <div class="modal-body">
+          <%= form_tag(create_business_path, method: 'post', role: 'form', remote: true) do %>
+          <%= label_tag :name , 'Nombre de la Empresa' %>
+          <%= text_field_tag :name,'', class: 'form-control', id: 'business_id' %> <br>
+          <%= submit_tag 'Guardar', class: 'btn btn-default'%>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</div>

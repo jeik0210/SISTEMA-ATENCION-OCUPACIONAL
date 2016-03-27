@@ -1,0 +1,75 @@
+<table class="table  table-striped">
+	<thead>
+		<tr>
+			<td></td>
+			<td>#</td>
+			<td>Dni</td>
+			<td>Historia clínica</td>
+			<td>Nombre</td>
+			<td>Edad</td>
+			<td>Sexo</td>
+			<td>Exámenes</td>
+			<td>Nuevo</td>
+		</tr>
+	</thead>
+	<tbody>
+		<% @patients.each do |p| %>
+		<tr>
+			<td>
+				<%= form_tag(delete_patient_path, method: 'post', role: 'form', remote: true) do %>
+				<%= hidden_field_tag :patient_id, p.id %>
+				<%= button_tag type: 'submit', class: "btn btn-danger text-center", data: {confirm: '¿Está seguro?'} do %>
+				<span class="glyphicon glyphicon-remove"></span>
+				<% end %>
+				<% end %>
+			</td>
+			<td><%= p.id %></td>
+			<td><%= p.dni %></td>
+			<td><%= p.medical_record %></td>
+			<td><%= link_to p.full_name, '#', data: { toggle: 'modal', target: '#modal_update_patient'+p.id.to_s } %></td>
+			<td><%= p.age %></td>
+			<% if p.sex %>
+			<td><span class="glyphicon glyphicon-heart"></span></td>
+			<% else %>
+			<td><span class="glyphicon glyphicon-heart-empty"></span></td>
+			<% end %>
+
+			<td>
+				<div class="dropdown">
+					<%= button_tag :dropdown_tests, class: 'btn btn-default dropdown-toggle', type: 'button', data: { toggle: 'dropdown' } do %>
+					Total <%= p.tests.count %> exámenes <span class="caret"></span>
+					<% end %>
+					<ul class="dropdown-menu" role="menu" aria-labelledby="dropdown_tests">
+						<% p.tests.each do |t| %>
+						<li><%= link_to 'Resultado : ' + (t.created_at - 5.hours).in_time_zone.to_formatted_s(:long), show_test_path(patient_id: p.id, test_id: t.id) %></li>
+						<% end %>
+					</ul>
+				</div>
+			</td>
+			<td>
+				<%= form_tag(create_test_path, method: 'post', role: 'form') do %>
+				<%= hidden_field_tag :patient_id, p.id %>
+				<%= submit_tag 'Nuevo Ocupacional' ,class: 'btn btn-success', data: { confirm: '¿Está seguro de crear un exámen ocupacional para éste paciente?' } %>
+				<% end %>
+			</td>
+			<td>
+				<div class="modal fade" id="modal_update_patient<%= p.id.to_s %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								<h4 class="modal-title" id="myModalLabel"><center><b>INGRESAR PACIENTE</b></center></h4>
+							</div>
+							<div class="modal-body">
+								<%= render 'form_update' , patient: p %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+<div class="text-center"><%= will_paginate @patients, renderer: BootstrapPagination::Rails %></div>
